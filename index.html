@@ -1,12 +1,174 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Redirecting...</title>
-    <meta http-equiv="refresh" content="0; url=https://saramelo-chat.online/pg1-carrossel/">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Imagem Responsiva, Título, Carrossel e Botão</title>
+  <!-- Importando a fonte Poppins do Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    /* Garantir que html e body ocupem 100% da altura e não haja scroll */
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    /* Layout em coluna para distribuir cabeçalho, conteúdo e rodapé */
+    body {
+      font-family: 'Poppins', sans-serif;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Cabeçalho com logo e título */
+    .header {
+      text-align: center;
+      padding: 10px;
+    }
+    .logotopo img {
+      width: 100%;
+      height: auto;
+      max-width: 200px; /* tamanho máximo do logo */
+      display: block;
+      margin: 0 auto;
+      padding: 15px;
+      margin-bottom: -10px;
+    }
+    .titulo {
+      font-size: 1.2rem;
+      margin: 0;
+      padding: 20px;
+    }
+    @media (max-width: 768px) {
+      .titulo {
+        font-size: 20px;
+        padding: 10px;
+        margin-bottom: 10px;
+      }
+    }
+
+    /* Área principal (main) que preenche o espaço entre cabeçalho e rodapé */
+    .main {
+      flex: 1;
+      overflow: hidden;
+    }
+    
+    /* Carrossel ocupa 100% da área disponível na main */
+    .carousel {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+    .carousel-track {
+      display: flex;
+      align-items: center;
+      gap: 30px;  /* Espaçamento consistente entre as imagens */
+      animation: scroll 3s linear infinite;
+      height: 100%;
+    }
+    .carousel-track img {
+      height: 100%;
+      width: auto;
+    }
+    @media (max-width: 768px) {
+      .carousel-track {
+        gap: 20px;
+      }
+    }
+    @keyframes scroll {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+
+    /* Rodapé com o botão */
+    .footer {
+      text-align: center;
+      padding: 10px 0;
+    }
+    .full-width-button {
+      width: 90%; /* Preenche quase toda a largura */
+      padding: 18px;
+      margin: 10px 0;
+      font-size: 18px;
+      background: linear-gradient(to right, #ff0000, #d68000);
+      color: #fff;
+      border: none;
+      border-radius: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .full-width-button:hover {
+      background-color: #0056b3;
+    }
+
+    /* Para celular: define uma altura fixa para a área main,
+       garantindo que o carrossel seja exibido por completo */
+    @media (max-width: 768px) {
+      .main {
+        height: calc(100vh - 120px); /* Ajuste esse valor conforme o espaço ocupado pelo cabeçalho e rodapé */
+      }
+    }
+  </style>
 </head>
 <body>
+  <!-- Cabeçalho: logo e título -->
+  <div class="header">
+    <div class="logotopo">
+      <img src="image/logo.png" alt="Descrição da imagem">
+    </div>
+    <h1 class="titulo">Encontre uma parceira <br>online perto de você</h1>
+  </div>
+
+  <!-- Área principal: Carrossel que preenche o espaço entre cabeçalho e rodapé -->
+  <div class="main">
+    <div class="carousel">
+      <div class="carousel-track">
+        <!-- Primeira série de 6 imagens -->
+        <img src="image/fotomodelo1.png" alt="Foto 1">
+        <img src="image/fotomodelo2.png" alt="Foto 2">
+        <img src="image/fotomodelo3.png" alt="Foto 3">
+        <img src="image/fotomodelo4.png" alt="Foto 4">
+        <img src="image/fotomodelo5.png" alt="Foto 5">
+        <img src="image/fotomodelo6.png" alt="Foto 6">
+        <!-- Duplicação para o loop infinito -->
+        <img src="image/fotomodelo1.png" alt="Foto 1">
+        <img src="image/fotomodelo2.png" alt="Foto 2">
+        <img src="image/fotomodelo3.png" alt="Foto 3">
+        <img src="image/fotomodelo4.png" alt="Foto 4">
+        <img src="image/fotomodelo5.png" alt="Foto 5">
+        <img src="image/fotomodelo6.png" alt="Foto 6">
+      </div>
+    </div>
+  </div>
+
+  <!-- Rodapé: Botão que fica na parte inferior -->
+  <div class="footer">
+    <button class="full-width-button">Clique Aqui</button>
+  </div>
+
+  <!-- Script para redirecionar com os parâmetros da URL -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function(){
+      // Captura a query string da URL atual (ex: "?utm=321&outroparam=valor")
+      var queryString = window.location.search;
+      
+      // Seleciona o botão
+      var button = document.querySelector(".full-width-button");
+      
+      // Define a URL do próximo site (altere conforme sua necessidade)
+      var nextSite = "https://lovechat-quiz.vercel.app/"; 
+      
+      // Ao clicar, redireciona para o próximo site, mantendo os parâmetros
+      button.addEventListener("click", function(){
+        window.location.href = nextSite + queryString;
+      });
+    });
+  </script>
 </body>
 </html>
-
